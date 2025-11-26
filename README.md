@@ -2,7 +2,7 @@
 
 A modern, self-hosted, mobile-friendly workout tracking application built with Flask and Tailwind CSS. Designed to be simple, fast, and aesthetically pleasing.
 
-![Workout Logger Screenshot](https://imgur.com/a/odMRIYs)
+[Workout Logger Screenshot](https://imgur.com/a/odMRIYs)
 
 ## Features
 
@@ -111,4 +111,5 @@ The container runs a background scheduler (cron) to keep your data safe:
 
 ## License
 [MIT License](LICENSE)
+
 
