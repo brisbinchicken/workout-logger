@@ -14,7 +14,7 @@ A modern, self-hosted, mobile-friendly workout tracking application built with F
 *   **Excel Export:** "Finish" your workout to automatically generate and save an Excel (`.xlsx`) report.
 *   **Admin Dashboard:** Manage exercises (add/disable) and update security settings.
 *   **Dark/Light Mode:** Beautiful UI with automatic or manual theme switching.
-*   **Dockerized:** Ready for easy deployment with Docker Compose.
+*   **Dockerised:** Ready for easy deployment with Docker Compose.
 *   **NAS/SMB Integration:** Automatically save workout exports and backups to a local folder or network share.
 
 ## Tech Stack
@@ -23,7 +23,7 @@ A modern, self-hosted, mobile-friendly workout tracking application built with F
 *   **Frontend:** HTML5, Tailwind CSS (via CDN), JavaScript
 *   **Authentication:** Flask-Login, Bcrypt
 *   **Data Export:** OpenPyXL
-*   **Containerization:** Docker, Docker Compose
+*   **Containerisation:** Docker, Docker Compose
 
 ---
 
@@ -47,7 +47,7 @@ Open `.env` in any text editor and adjust the following settings to match your e
     *   *If blank:* The app creates the user with **no password** on the first run. You must log in and set a password immediately in the Admin dashboard.
     *   *If set:* You can generate a bcrypt hash online or via python and paste it here to pre-set a password.
 
-#### 🌍 Localization
+#### 🌍 Localisation
 *   `TIMEZONE`: **Critical.** Set this to your local timezone (e.g., `America/New_York`, `Australia/Brisbane`, `Europe/London`).
     *   *Why?* This ensures your workouts are logged on the correct day and time. If incorrect, your logs might appear on the wrong date.
 
@@ -114,4 +114,5 @@ The container runs a background scheduler (cron) to keep your data safe:
 
 ## License
 [MIT License](LICENSE)
+
 
