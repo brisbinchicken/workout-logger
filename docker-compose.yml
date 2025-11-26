@@ -1,0 +1,42 @@
+services:
+  app:
+    build: .
+    image: workout-logger:latest
+    user: "0:0"
+    ports:
+      - "${LAN_PORT:-8080}:8080"
+    env_file:
+      - .env
+    volumes:
+      - db_data:/data
+      - exports_data:/exports
+      - ${SMB_MOUNT_HOST_PATH:-/mnt/workouts}/${EXPORTS_SUBDIR:-exports}:/smb/exports
+      - ${SMB_MOUNT_HOST_PATH:-/mnt/workouts}/${BACKUPS_SUBDIR:-backups}:/smb/backups
+    command: python -m app.run
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1024M
+
+  cron:
+    image: workout-logger:latest
+    user: "0:0"
+    volumes:
+      - db_data:/data
+      - exports_data:/exports
+      - ${SMB_MOUNT_HOST_PATH:-/mnt/workouts}/${EXPORTS_SUBDIR:-exports}:/smb/exports
+      - ${SMB_MOUNT_HOST_PATH:-/mnt/workouts}/${BACKUPS_SUBDIR:-backups}:/smb/backups
+      - ./scripts:/scripts:ro
+      - ./.env:/env/.env:ro
+    command: sh -lc "/scripts/start-cron.sh"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+
+volumes:
+  db_data:
+  exports_data:

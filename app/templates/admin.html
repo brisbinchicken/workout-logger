@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="space-y-8 animate-fade-in">
+
+  <!-- Exercises Section -->
+  <div class="glass-card rounded-2xl p-6">
+    <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+      <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+        </path>
+      </svg>
+      Manage Exercises
+    </h2>
+
+    <form method="post" class="flex gap-3 mb-6">
+      <input type="hidden" name="action" value="add_ex">
+      <input name="name" placeholder="New exercise name..." class="input-field flex-1 rounded-xl p-3" required>
+      <button
+        class="px-6 py-3 rounded-xl bg-success-600 text-white font-bold shadow-lg shadow-success-500/30 hover:bg-success-500 transition-all">
+        Add
+      </button>
+    </form>
+
+    <div class="overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700">
+      <table class="w-full text-left">
+        <thead class="bg-gray-50 dark:bg-gray-800/50">
+          <tr class="text-xs font-bold text-gray-500 uppercase tracking-wider">
+            <th class="p-4">Name</th>
+            <th class="p-4">Status</th>
+            <th class="p-4 text-right">Action</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+          {% for e in exercises %}
+          <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+            <td class="p-4 font-medium">{{ e['name'] }}</td>
+            <td class="p-4">
+              <span
+                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium {{ 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' if e['is_active'] else 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-400' }}">
+                {{ 'Active' if e['is_active'] else 'Inactive' }}
+              </span>
+            </td>
+            <td class="p-4 text-right">
+              <form method="post" class="inline-block">
+                <input type="hidden" name="action" value="toggle_ex">
+                <input type="hidden" name="id" value="{{ e['id'] }}">
+                <button class="text-sm font-medium text-primary-500 hover:text-primary-400 transition-colors">
+                  {{ 'Disable' if e['is_active'] else 'Enable' }}
+                </button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Password Section -->
+  <div class="glass-card rounded-2xl p-6">
+    <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+      <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+        </path>
+      </svg>
+      Security
+    </h2>
+    <form method="post" class="flex flex-col md:flex-row gap-3">
+      <input type="hidden" name="action" value="set_password">
+      <input type="password" name="new_password" placeholder="New password" class="input-field flex-1 rounded-xl p-3"
+        required>
+      <button
+        class="px-6 py-3 rounded-xl bg-primary-600 text-white font-bold shadow-lg shadow-primary-500/30 hover:bg-primary-500 transition-all">
+        Update Password
+      </button>
+    </form>
+  </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="min-h-[60vh] flex items-center justify-center">
+  <div class="glass-card rounded-2xl p-8 w-full max-w-md animate-fade-in">
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold mb-2">Welcome Back</h1>
+      <p class="text-gray-500 dark:text-gray-400">Sign in to continue your progress</p>
+    </div>
+
+    <form method="post" class="space-y-6">
+      <div class="space-y-1.5">
+        <label class="text-xs font-bold text-gray-500 uppercase tracking-wider ml-1">Username</label>
+        <input name="username" class="input-field w-full rounded-xl p-3" required placeholder="Enter username">
+      </div>
+
+      <div class="space-y-1.5">
+        <label class="text-xs font-bold text-gray-500 uppercase tracking-wider ml-1">Password</label>
+        <input type="password" name="password" class="input-field w-full rounded-xl p-3" required
+          placeholder="••••••••">
+      </div>
+
+      <button
+        class="w-full py-3 rounded-xl bg-gradient-to-r from-primary-600 to-primary-500 text-white font-bold shadow-lg shadow-primary-500/30 hover:shadow-primary-500/50 hover:scale-[1.02] active:scale-[0.98] transition-all"
+        type="submit">
+        Login
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %}

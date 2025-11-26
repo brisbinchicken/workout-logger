@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="glass-card rounded-2xl p-6 animate-fade-in">
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+    <h1 class="text-2xl font-bold">Workout History</h1>
+
+    <form class="flex flex-wrap gap-2" method="get">
+      <div class="flex items-center gap-2 bg-gray-100 dark:bg-gray-800/50 rounded-lg p-1">
+        <input type="date" name="start" class="bg-transparent border-none text-sm p-1 focus:ring-0"
+          value="{{ request.args.get('start','') }}">
+        <span class="text-gray-400">-</span>
+        <input type="date" name="end" class="bg-transparent border-none text-sm p-1 focus:ring-0"
+          value="{{ request.args.get('end','') }}">
+      </div>
+      <button
+        class="px-4 py-2 rounded-lg bg-primary-600 text-white text-sm font-bold hover:bg-primary-500 transition-colors">
+        Filter
+      </button>
+    </form>
+  </div>
+
+  <div class="overflow-x-auto">
+    <table class="w-full text-left border-collapse">
+      <thead>
+        <tr
+          class="text-xs font-bold text-gray-500 uppercase tracking-wider border-b border-gray-200 dark:border-gray-700">
+          <th class="p-4">Date</th>
+          <th class="p-4">Exercise</th>
+          <th class="p-4">Sets</th>
+          <th class="p-4">Reps</th>
+          <th class="p-4">Weight</th>
+          <th class="p-4">Notes</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+        {% for r in rows %}
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group">
+          <td class="p-4">
+            <div class="font-bold">{{ r['date'] }}</div>
+            <div class="text-xs text-gray-400">{{ r['time'] }}</div>
+          </td>
+          <td class="p-4 font-medium">{{ r['exercise'] }}</td>
+          <td class="p-4">
+            <span
+              class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 font-bold text-xs">
+              {{ r['sets'] }}
+            </span>
+          </td>
+          <td class="p-4 text-gray-600 dark:text-gray-300">{{ r['reps'] }}</td>
+          <td class="p-4 font-mono text-primary-500 font-semibold">{{ r['weight_kg'] }}kg</td>
+          <td class="p-4 text-sm text-gray-500 italic max-w-xs truncate">{{ r['notes'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    {% if not rows %}
+    <div class="text-center py-12 text-gray-500">
+      No workouts found for this period.
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
