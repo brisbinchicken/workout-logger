@@ -68,7 +68,7 @@ The app saves data in two places: internal Docker volumes (for the app to work) 
 
 1.  **Clone the repository** (or download the files):
     ```bash
-    git clone https://github.com/yourusername/workout-logger.git
+    git clone https://github.com/brisbinchicken/workout-logger.git
     cd workout-logger
     ```
 
@@ -111,3 +111,4 @@ The container runs a background scheduler (cron) to keep your data safe:
 
 ## License
 [MIT License](LICENSE)
+
