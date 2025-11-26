@@ -2,10 +2,13 @@
 
 A modern, self-hosted, mobile-friendly workout tracking application built with Flask and Tailwind CSS. Designed to be simple, fast, and aesthetically pleasing.
 
-[Workout Logger Screenshot](https://imgur.com/a/odMRIYs)
+[Workout Logger Desktop Screenshot](https://imgur.com/a/odMRIYs)
+
+[Workout Logger Mobile Screenshot](https://imgur.com/a/mTwKoZG)
 
 ## Features
 
+*   **📱 Mobile & Desktop Friendly:** A fully responsive GUI that adapts to any screen size. Large, easy-to-tap buttons for logging sets on the go.
 *   **Log Workouts:** Quickly log exercises, sets, reps, weight, and notes.
 *   **History Tracking:** View a detailed history of past workouts with date filtering.
 *   **Excel Export:** "Finish" your workout to automatically generate and save an Excel (`.xlsx`) report.
@@ -111,5 +114,4 @@ The container runs a background scheduler (cron) to keep your data safe:
 
 ## License
 [MIT License](LICENSE)
-
 
